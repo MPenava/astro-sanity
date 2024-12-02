@@ -9,8 +9,22 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^4.16.16",
     "@astrojs/check": "^0.9.4",
+    "@astrojs/react": "^3.6.3",
+    "@astrojs/tailwind": "^5.1.2",
+    "@sanity/astro": "^3.1.6",
+    "@sanity/client": "^6.23.0",
+    "@sanity/vision": "^3.65.1",
+    "@sanity/visual-editing": "^2.10.3",
+    "astro": "^4.16.16",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "sanity": "^3.65.1",
+    "tailwindcss": "^3.4.15",
     "typescript": "^5.7.2"
+  },
+  "devDependencies": {
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-tailwindcss": "^0.6.9"
   }
 }

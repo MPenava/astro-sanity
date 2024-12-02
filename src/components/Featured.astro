@@ -1,0 +1,43 @@
+---
+import { sanityClient } from "sanity:client";
+import type { PostItem } from "../libs/PostItem";
+import { Image } from "astro:assets";
+
+const posts = await sanityClient.fetch(`*[_type == "post"]`);
+---
+
+<section>
+  <h1 class="mb-4 flex justify-center text-2xl font-bold">Posts</h1>
+  <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+    {
+      posts.map((post: PostItem) => (
+        <div class="overflow-hidden rounded-lg bg-white shadow-md">
+          {/* Post Content */}
+          <div class="p-4">
+            <h2 class="text-lg font-semibold text-gray-800">{post.name}</h2>
+            <p class="text-sm text-gray-500">
+              By {post.author} on {new Date(post.date).toLocaleDateString()}
+            </p>
+            <p class="mt-2 text-gray-600">{post.category}</p>
+            {/* Tags */}
+            <div class="mt-2 flex flex-wrap gap-2">
+              {post.tags.map((tag: string) => (
+                <span class="rounded-full bg-blue-100 px-2 py-1 text-xs text-blue-800">
+                  {tag}
+                </span>
+              ))}
+            </div>
+            {/* Post Content Preview */}
+            {post.content && post.content[0]?.children && (
+              <p class="mt-4 text-sm text-gray-700">
+                {post.content[0].children
+                  .map((child: any) => child.text)
+                  .join(" ")}
+              </p>
+            )}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
