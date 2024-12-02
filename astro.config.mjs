@@ -7,6 +7,8 @@ import react from "@astrojs/react";
 
 import sanity from "@sanity/astro";
 
+import netlify from "@astrojs/netlify";
+
 // https://astro.build/config
 export default defineConfig({
   integrations: [
@@ -19,8 +21,12 @@ export default defineConfig({
       studioBasePath: "/admin",
     }),
   ],
+
   output: "server",
+
   devToolbar: {
     enabled: false,
   },
+
+  adapter: netlify(),
 });
